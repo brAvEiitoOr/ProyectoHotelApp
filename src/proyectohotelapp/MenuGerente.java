@@ -24,11 +24,14 @@ public class MenuGerente {
         int opcion;
         String nombre,cargo;
         int edad;
+        ListaHabitacion listaHabitacion = new ListaHabitacion();
         double sueldo;
         do {
             System.out.println("MENU GERENTE");
             System.out.println("1. Listar empleados");
             System.out.println("2. Añadir empleado");
+            System.out.println("3. Listar habitación");
+            System.out.println("4. Añadir habitación");
             System.out.println("0. Regresar");
             System.out.print("Ingrese: ");
             opcion = Integer.parseInt(entrada());
@@ -46,6 +49,16 @@ public class MenuGerente {
                     System.out.print("Sueldo: ");
                     sueldo=Double.parseDouble(entrada());
                     listaEmpleado.anadirEmpleado(new Empleado(nombre,edad,cargo,sueldo));
+                    break;
+                case 3:
+                    listaHabitacion.listarHabitaciones();
+                    break;
+                case 4:
+                    System.out.print("NumeroHabitacion: ");
+                    nombre=entrada();
+                    System.out.print("Tipo: ");
+                    cargo=entrada();
+                    listaHabitacion.anadirHabitacion(new Habitacion(nombre,cargo));
                     break;
                 case 0:
                     break;

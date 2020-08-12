@@ -17,39 +17,40 @@ public class GestorHotelApp {
 
     public static void main(String[] args) {
 
-        //Esta seccion carga el archivo de empleados y crea los objetos necesarios
+        //Esta seccion crea los objetos necesarios
         ListaEmpleado listaEmpleado = new ListaEmpleado();
-        try {
-            String aux;
-            FileReader file = new FileReader("ListaEmpleados");
-            BufferedReader br = new BufferedReader(file);
-            while ((aux = br.readLine()) != null){
-                listaEmpleado.anadirEmpleado(aux);
-            }
-        }catch (Exception e){}
+        MenuCliente menuCliente = new MenuCliente();
 
         //Login primitivo que solo tiene el nombre
         String s;
+        int op;
         MenuGerente mg = new MenuGerente(listaEmpleado);
         MenuEmpleado me = new MenuEmpleado();
-        System.out.print("Ingrese el nombre: ");
-        s=entrada();
-        for (int i=0; i<listaEmpleado.numeroEmpleados(); i++){
-            if(s.equals(listaEmpleado.obtenerEmpleado(i).getNombre())){
-                if(listaEmpleado.obtenerEmpleado(i).getCargo().equals("Gerente")){
-                    mg.menu();
-                    break;
-                }
-                else {
-                    me.menu(listaEmpleado.obtenerEmpleado(i).getNombre());
-                    break;
-                }
+        System.out.print("1: Empleado; 2: Cliente");
+        op=Integer.parseInt(entrada());
+        switch(op){
+            case 1:
+                System.out.print("Ingrese el nombre: ");
+                s=entrada();
+                for (int i=0; i<listaEmpleado.numeroEmpleados(); i++){
+                    if(s.equals(listaEmpleado.obtenerEmpleado(i).getNombre())){
+                        if(listaEmpleado.obtenerEmpleado(i).getCargo().equals("Gerente")){
+                            mg.menu();
+                            break;
+                        }
+                        else {
+                            me.menu(listaEmpleado.obtenerEmpleado(i).getNombre());
+                            break;
+                        }
 
-            }
-            if (i==listaEmpleado.numeroEmpleados()-1){
-                System.out.println("No existe empleado");
-            }
+                    }
+                    if (i==listaEmpleado.numeroEmpleados()-1){
+                        System.out.println("No existe empleado");
+                    }
+                }
+                break;
+            case 2:
+                break;
         }
-
     }
 }

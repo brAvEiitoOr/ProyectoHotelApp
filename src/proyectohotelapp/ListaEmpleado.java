@@ -10,6 +10,14 @@ public class ListaEmpleado {
 
     public ListaEmpleado(){
         listaEmpleado = new ArrayList<>();
+        try {
+            String aux;
+            FileReader file = new FileReader("ListaEmpleados");
+            BufferedReader br = new BufferedReader(file);
+            while ((aux = br.readLine()) != null){
+                anadirEmpleado(aux);
+            }
+        }catch (Exception e){}
     }
 
     public void anadirEmpleado(Empleado e){
